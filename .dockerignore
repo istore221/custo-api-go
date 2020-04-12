@@ -1,0 +1,10 @@
+Dockerfile
+docker-compose.yaml
+custo-api
+.git
+bin
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
