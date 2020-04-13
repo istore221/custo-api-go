@@ -1,0 +1,7 @@
+server:
+  port: 8081
+  loglevel: ERROR
+database:
+  mongodb:
+    host: localhost
+    database: mydb
