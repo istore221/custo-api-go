@@ -11,6 +11,7 @@
 *.dylib
 /bin
 /custo-api
+/pkg
 
 # IDE
 .idea

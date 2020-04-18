@@ -14,7 +14,10 @@ type Config struct {
 	}
 }
 
+
 func LoadConfiguration(cfgFile string) (*Config, error) {
+
+
 
 	c := Config{
 		Environment: getEnv("APP_ENV", "development") ,

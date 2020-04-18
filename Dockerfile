@@ -4,13 +4,16 @@ ARG config
 
 ENV APP_CONFIG=$config
 
-WORKDIR /go
+ENV GOPATH=/go:/app
+
+WORKDIR /app
 
 ADD . .
 
 RUN go get ./... \
+    && go get github.com/stretchr/testify \
     && go install github.com/istore221/custo-api
 
-ENTRYPOINT /go/bin/custo-api -config=$APP_CONFIG
+ENTRYPOINT /app/bin/custo-api -config=$APP_CONFIG
 
 EXPOSE 8080
