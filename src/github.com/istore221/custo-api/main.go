@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/istore221/custo-api/config"
 	"github.com/istore221/custo-api/internal/log"
+	"github.com/istore221/custo-api/middleware"
 	"net/http"
 	"os"
 	"time"
@@ -92,7 +93,9 @@ func main() {
 		writer.Write([]byte("/go Hello world "+cfg.Environment))
 	})
 
-	hs.Handler = mux
+	hs.Handler = middleware.RootMiddleware{
+					Next:mux,
+				}
 
 
 	
