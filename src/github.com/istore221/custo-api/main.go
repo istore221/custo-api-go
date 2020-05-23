@@ -16,10 +16,13 @@ var Version = "1.0.0"
 var flagConfig = flag.String("config", "./config/development.yml", "path to the config file")
 
 
+
+
 func main() {
 
 	flag.Parse()
 
+	
 
 	//logz.SetFormatter(&logz.JSONFormatter{})
 	//logz.WithFields(logz.Fields{
@@ -45,6 +48,9 @@ func main() {
 			"size":   10,
 	}).Warn("A walrus appears")
 
+	fmt.Println(log.GetLogger().GetLevel())
+
+
 	//fmt.Println("CHANGED LEVEL ",logger.GetLevel())
 	//
 	//switch v := logger.(type) {// type switch
@@ -65,7 +71,6 @@ func main() {
 		fmt.Println(err)
 		os.Exit(-1)
 	}
-
 
 
 	hs := &http.Server{
@@ -89,6 +94,8 @@ func main() {
 
 	hs.Handler = mux
 
+
+	
 	if err := hs.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		//error
 		log.GetLogger().Info("error occured")

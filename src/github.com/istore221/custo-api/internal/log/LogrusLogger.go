@@ -2,8 +2,12 @@ package log
 
 import "fmt"
 
-type LogrusLogger struct {
+type BaseLogger struct{
 	Level Level
+}
+
+type LogrusLogger struct {
+	BaseLogger
 }
 
 func (logger *LogrusLogger) Panic(args ...interface{})  {
@@ -44,6 +48,11 @@ func (logger *LogrusLogger) Debug(args ...interface{})  {
 
 func (logger *LogrusLogger) Trace(args ...interface{})  {
 	fmt.Println("Logrus Trace")
+
+	switch v := args[0].(type) {
+	case *Entry:
+		fmt.Println(v.Fields)
+	}
 }
 
 func (logger *LogrusLogger) newEntry(fields Fields) *Entry {
@@ -66,7 +75,10 @@ func (logger *LogrusLogger) GetLevel() Level  {
 func NewLogrusLogger() *LogrusLogger {
 
 	return &LogrusLogger{
-		Level:DebugLevel, //Default
+		BaseLogger: BaseLogger{
+			Level:DebugLevel,
+		},
+		//Level:DebugLevel, //Default
 	}
 }
 
